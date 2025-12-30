@@ -1,10 +1,30 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-import { Sidebar } from "../components/Sidebar.jsx";
-import { Navbar } from "../components/Navbar.jsx";
+import * as userService from "../services/UserService.js";
 
 export const AccountInfo = () => {
     const navigate = useNavigate();
+    const [userInfo, setUserInfo] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone:"",
+        profilePicUrl: ""
+    });
+
+     useEffect(() => {
+            getUserInfo();
+        }, []);
+    
+        const getUserInfo = async () => {
+            const res = await userService.getMyProfile();
+    
+            if (!res.success) {
+                return;
+            }
+            setUserInfo(res.data);
+        }
+    
 
     return (
 
@@ -29,14 +49,14 @@ export const AccountInfo = () => {
                 {/* Profile Info */}
                 <div className="flex items-center gap-4 mb-6">
                     <img
-                        src="/user.png"
+                        src={userInfo.profilePicUrl}
                         alt="profile"
                         className="w-16 h-16 rounded-full object-cover"
                     />
                     <div>
-                        <h3 className="text-lg font-semibold">Sundar Gurung</h3>
+                        <h3 className="text-lg font-semibold">{userInfo.firstName} {userInfo.lastName}</h3>
                         <p className="text-sm text-gray-500">
-                            sundargurung360@gmail.com
+                            {userInfo.email}
                         </p>
                     </div>
                 </div>
@@ -52,6 +72,8 @@ export const AccountInfo = () => {
                             </label>
                             <input
                                 type="text"
+                                name="firstName"
+                                value={userInfo.firstName}
                                 className="mt-1 border rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-red-400"
                             />
                         </div>
@@ -63,6 +85,8 @@ export const AccountInfo = () => {
                             </label>
                             <input
                                 type="text"
+                                name="lastName"
+                                value={userInfo.lastName}
                                 className="mt-1 border rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-red-400"
                             />
                         </div>
@@ -74,6 +98,9 @@ export const AccountInfo = () => {
                             </label>
                             <input
                                 type="email"
+                                name="email"
+                                value={userInfo.email}
+                                disabled
                                 className="mt-1 border rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-red-400"
                             />
                         </div>
@@ -85,17 +112,8 @@ export const AccountInfo = () => {
                             </label>
                             <input
                                 type="text"
-                                className="mt-1 border rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-red-400"
-                            />
-                        </div>
-
-                        {/* Position */}
-                        <div className="flex flex-col">
-                            <label className="text-sm font-semibold text-gray-700">
-                                Position
-                            </label>
-                            <input
-                                type="text"
+                                name="phone"
+                                value={userInfo.phone}
                                 className="mt-1 border rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-red-400"
                             />
                         </div>
