@@ -1,0 +1,29 @@
+@BASE_URL = http://localhost:3800/user
+@TOKEN =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTM5ZTdkMjAxNmRhZTk4NjhhNjI2YzUiLCJyb2xlIjoiVXNlciIsImlhdCI6MTc2NTQwMjU4NywiZXhwIjoxNzY1NDA0Mzg3fQ.2W2YDxKne9VS6km0GcGH-dd5lrtgGGpiJNWi03Kv3eI
+
+#GET Profile
+GET {{BASE_URL}}/
+Authorization: Bearer {{TOKEN}}
+Content-Type: application/json
+###
+
+### UPDATE PROFILE
+PUT {{BASE_URL}}/
+Authorization: Bearer {{TOKEN}}
+Content-Type: application/json
+
+{
+  "firstName": "Grishma",
+  "lastName": "Kandel",
+  "phone": "0452255568"
+}
+
+### UPDATE Password
+PUT {{BASE_URL}}/update-password
+Authorization: Bearer {{TOKEN}}
+Content-Type: application/json
+
+{
+  "oldPassword": "mypassword123",
+  "newPassword": "newpass000"
+}

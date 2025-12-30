@@ -1,0 +1,92 @@
+@BASE_URL = http://localhost:3800/tasks
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTM5ZTdkMjAxNmRhZTk4NjhhNjI2YzUiLCJyb2xlIjoiVXNlciIsImlhdCI6MTc2NzA3NzU0NSwiZXhwIjoxNzY3MDk1NTQ1fQ.dPYRgFbzaiEGb4x1zOzxK6SPUCSpfAgwHr940nl3eUo
+@TOKEN1 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTM2NTBjZjBiNjUyMGNkYzljYjliNDIiLCJyb2xlIjoiVXNlciIsImlhdCI6MTc2NTE5NjE5NiwiZXhwIjoxNzY1MTk3OTk2fQ.c8xyHorI7ML1Hn6tlpOb0ZM7Tz_IXl2_ERVNKXvtAIQ
+
+# GET ALL TASKS
+GET {{BASE_URL}}/
+Authorization: Bearer {{TOKEN}}
+Content-Type: application/json
+
+###
+
+#  GET TASK BY ID
+GET {{BASE_URL}}/69525a2e19884e00288bac31
+Authorization: Bearer {{TOKEN}}
+Content-Type: application/json
+
+###
+
+# TOGGLE VITAL TASKS
+PATCH {{BASE_URL}}/vitals/toggle/694c760d3c1aad77d2753369
+Authorization: Bearer {{TOKEN}}
+Content-Type: application/json
+
+###
+
+# GET VITAL TASKS (High priority only)
+GET {{BASE_URL}}/vitals
+Authorization: Bearer {{TOKEN}}
+Content-Type: application/json
+
+###
+
+# UPDATE VITAL TASK
+PUT {{BASE_URL}}/vitals/694c760d3c1aad77d2753369
+Authorization: Bearer {{TOKEN}}
+Content-Type: application/json
+
+{
+  "title": "AAAA",
+  "description": "Updated vital task description",
+  "status": "Completed",
+  "dueDate": "2025-01-25",
+  "image": ""
+}
+
+###
+
+# CREATE TASK
+POST {{BASE_URL}}/
+Authorization: Bearer {{TOKEN}}
+Content-Type: application/json
+
+{
+  "title": "Selling nail",
+  "description": "Updated description",
+  "priority": "moderate",
+  "status": "Not Started",
+  "dueDate": "2025-01-20",
+  "image": ""
+}
+
+###
+
+# UPDATE TASK
+PUT {{BASE_URL}}/69536b471c232d9b35bff4fe
+Authorization: Bearer {{TOKEN}}
+Content-Type: application/json
+
+{
+  "title": "GGGG",
+  "description": "Updated description",
+  "priority": "moderate",
+  "status": "In Progress",
+  "dueDate": "2025-01-22",
+  "image": ""
+}
+
+###
+
+# DELETE TASK
+DELETE {{BASE_URL}}/69536b471c232d9b35bff4fe
+Authorization: Bearer {{TOKEN}}
+Content-Type: application/json
+
+###
+
+# TASK Statistics 
+GET {{BASE_URL}}/stats
+Authorization: Bearer {{TOKEN}}
+Content-Type: application/json
+
+###

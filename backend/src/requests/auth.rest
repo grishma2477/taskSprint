@@ -1,0 +1,26 @@
+@BASE_URL = http://localhost:3800/auth
+@TOKEN = 1
+
+### REGISTER USER
+POST {{BASE_URL}}/register
+Content-Type: application/json
+
+{
+  "firstName": "Sandip",
+  "lastName": "Dhakal",
+  "email": "sandip2@example.com",
+  "phone": "0011995233",
+  "userName": "sandip991",
+  "password": "mypassword123"
+}
+
+###
+
+# LOGIN USER
+POST {{BASE_URL}}/login
+Content-Type: application/json
+
+{
+  "email": "sandip2@example.com",
+  "password": "mypassword123"
+}
