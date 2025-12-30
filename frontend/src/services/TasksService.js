@@ -14,6 +14,18 @@ export const getAllTasks = async () => {
     
 }
 
+export const getTasksById = async (taskId) => {
+     const token = localStorage.getItem(Constant.ACCESS_TOKEN);
+    const res = await axios.get(`${Constant.TASKS_ENDPOINT}/${taskId}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+
+    return res.data;
+    
+}
+
 export const getVitalTasks = async () => {
     const token = localStorage.getItem(Constant.ACCESS_TOKEN);
     const res = await axios.get(`${Constant.TASKS_ENDPOINT}/vitals`, {

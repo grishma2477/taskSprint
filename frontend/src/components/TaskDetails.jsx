@@ -1,5 +1,5 @@
 import React from "react";
-import { FaEdit, FaEye, FaTrashAlt, FaHeart } from "react-icons/fa";
+import { FaEye, FaTrashAlt, FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import * as taskService from "../services/TasksService.js";
@@ -37,7 +37,7 @@ export const TaskDetails = ({ selectedTask }) => {
 
             <p className="text-sm mt-2"><strong>Priority:</strong> {selectedTask.priority}</p>
             <p className="text-sm"><strong>Status:</strong> {selectedTask.status}</p>
-            <p className="text-sm"><strong>Created on:</strong> {selectedTask.created}</p>
+            <p className="text-sm"><strong>Due:</strong> {selectedTask.dueDate}</p>
 
             <div className="mt-4">
                 <h3 className="font-semibold">Task Description:</h3>
@@ -56,7 +56,7 @@ export const TaskDetails = ({ selectedTask }) => {
                 </button>
 
                 <button className="p-3 bg-blue-500 text-white rounded-lg">
-                    <Link to="/view-task">
+                    <Link to={`/view-task/${selectedTask._id}`}>
                     <FaEye />
                     </Link>
                 </button>

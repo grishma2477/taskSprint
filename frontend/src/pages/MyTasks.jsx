@@ -98,7 +98,6 @@ export const MyTasks = () => {
                     taskData={taskData}
                     setTaskData={setTaskData}
                     onSubmit={(data)=>{
-                        console.log("My input data -->",data);
                         addTask(data);
                         
                     }} />

@@ -28,12 +28,19 @@ status: {
     enum:["Not Started", "In Progress", "Completed"],
     default: "Not Started",
 },
-
- owner: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: Constant.USER_MODEL,
-      required: true,
-    },
+imageUrl:{
+  type:String,
+  default:null
+},
+owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: Constant.USER_MODEL,
+    required: true,
+  },
+  dueDate: {
+    type: Date,
+    default: null,
+  },
   },
   {
     timestamps: true, // adds createdAt, updatedAt

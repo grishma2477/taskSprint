@@ -1,5 +1,3 @@
-import { Sidebar } from "../components/Sidebar.jsx";
-import { Navbar } from "../components/Navbar.jsx";
 import { WelcomeHeader } from "../components/WelcomeHeader.jsx";
 import { TodoList } from "../components/TodoList.jsx";
 import { TaskStatus } from "../components/TaskStatus.jsx";
@@ -16,6 +14,7 @@ export default function Dashboard() {
         email: "",
         profilePicUrl: ""
     });
+    const [allTasks, setAllTasks] = useState([]);
     const [taskStats, setTaskStats] = useState({
         completedPercent: 0,
         inProgressPercent: 0,
@@ -25,6 +24,7 @@ export default function Dashboard() {
     useEffect(() => {
         getUserInfo();
         getTasksStats();
+        getAllTasks();
     }, []);
 
     const getUserInfo = async () => {
@@ -44,6 +44,15 @@ export default function Dashboard() {
         }
         setTaskStats(res.data);
     }
+
+
+    const getAllTasks = async () => {
+        const res = await tasksService.getAllTasks();
+        if (!res.success){
+            return;
+        }
+        setAllTasks(res.data);
+    }
     return (
         <div className="flex">
 
@@ -52,14 +61,18 @@ export default function Dashboard() {
 
                 <div className="grid grid-cols-3 gap-6 mt-6">
                     <div className="col-span-2 space-y-4">
-                        <TodoList />
+                        <TodoList 
+                        tasks={allTasks}
+                        />
                     </div>
 
                     <div className="space-y-4">
                         <TaskStatus
                             taskStats={taskStats}
                         />
-                        <CompletedTask />
+                        <CompletedTask 
+                        tasks={allTasks}
+                        />
                     </div>
                 </div>
             </div>
