@@ -11,8 +11,8 @@ export const VitalTaskItem = ({ task, onClick }) => {
                 <p className="text-sm text-gray-600">{task.description}</p>
 
                 <div className="text-xs mt-2">
-                    <span className="mr-3 font-semibold">Priority: {task.priority}</span>
-                    <span>Status: {task.status}</span>
+                    <span className="mr-3 font-semibold">Priority: <span className="text-blue-600">{task.priority}</span></span>
+                    <span>Status: <span className="text-red-600">{task.status}</span></span>
                 </div>
             </div>
 

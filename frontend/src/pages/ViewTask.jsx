@@ -4,6 +4,8 @@ import { useState } from "react";
 import { UpdateTaskDialog } from "../components/UpdateTaskDialog.jsx";
 import * as taskService from "../services/TasksService.js"
 import { useParams } from "react-router-dom";
+import { Images } from "../assets/assets.js";
+import { formatDate } from "../utils/DateFormatter.js";
 
 const STATUS_OPTIONS = ["Not Started", "In Progress", "Completed"];
 const PRIORITY_OPTIONS = ["Low", "Moderate", "High", "Extreme"];
@@ -77,9 +79,19 @@ export const ViewTask = () => {
                             className="w-40 h-32 rounded-xl object-cover"
                         />
                         <div>
-                            <h3 className="text-xl font-semibold mb-1">
+                            <h3 className="text-xl font-semibold mb-1 flex items-center gap-2">
                                 {task.title}
+
+                                {task.isVital && (
+                                    <img
+                                        src={Images.vital_badge}
+                                        alt="vital-badge"
+                                        className="w-12 h-auto"
+                                    />
+
+                                )}
                             </h3>
+
 
                             <p className="text-sm">
                                 <span className="font-semibold">Priority: </span>
@@ -92,7 +104,7 @@ export const ViewTask = () => {
                             </p>
 
                             <p className="text-sm mt-1 text-gray-500">
-                                Due: {task.dueDate}
+                                Due: {formatDate(task.dueDate)}
                             </p>
                         </div>
                     </div>

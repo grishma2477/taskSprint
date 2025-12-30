@@ -1,8 +1,10 @@
 import React from "react";
-import { FaEdit, FaTrashAlt, FaHeartBroken } from "react-icons/fa";
+import { FaEdit, FaTrashAlt, FaHeartBroken, FaEye } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import * as tasksService from "../services/TasksService.js"
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { formatDate } from "../utils/DateFormatter.js";
 
 export const VitalTaskDetails = ({ selectedVital }) => {
     if (!selectedVital) {
@@ -33,7 +35,7 @@ export const VitalTaskDetails = ({ selectedVital }) => {
             <h2 className="text-xl font-semibold">{selectedVital.title}</h2>
             <p className="text-sm mt-2"><strong>Priority:</strong> {selectedVital.priority}</p>
             <p className="text-sm"><strong>Status:</strong> {selectedVital.status}</p>
-            <p className="text-sm"><strong>Created on:</strong> {selectedVital.created}</p>
+            <p className="text-sm"><strong>Due:</strong> {formatDate(selectedVital.dueDate)}</p>
 
             <div className="mt-4 space-y-2 text-sm text-gray-700">
                 <p>{selectedVital.longDescription}</p>
@@ -52,6 +54,11 @@ export const VitalTaskDetails = ({ selectedVital }) => {
                     onClick={handleSubmit}
                 >
                     <FaHeartBroken />
+                </button>
+                <button className="p-3 bg-blue-500 text-white rounded-lg">
+                    <Link to={`/view-task/${selectedVital._id}`}>
+                        <FaEye />
+                    </Link>
                 </button>
                 <button className="p-3 bg-red-500 text-white rounded-lg">
                     <FaEdit />

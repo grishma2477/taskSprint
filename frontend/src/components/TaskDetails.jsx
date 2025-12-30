@@ -3,6 +3,7 @@ import { FaEye, FaTrashAlt, FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import * as taskService from "../services/TasksService.js";
+import { formatDate } from "../utils/DateFormatter.js";
 
 export const TaskDetails = ({ selectedTask }) => {
 
@@ -37,7 +38,7 @@ export const TaskDetails = ({ selectedTask }) => {
 
             <p className="text-sm mt-2"><strong>Priority:</strong> {selectedTask.priority}</p>
             <p className="text-sm"><strong>Status:</strong> {selectedTask.status}</p>
-            <p className="text-sm"><strong>Due:</strong> {selectedTask.dueDate}</p>
+            <p className="text-sm"><strong>Due:</strong> {formatDate(selectedTask.dueDate)}</p>
 
             <div className="mt-4">
                 <h3 className="font-semibold">Task Description:</h3>

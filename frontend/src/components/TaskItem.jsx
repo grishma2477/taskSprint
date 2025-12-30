@@ -1,3 +1,5 @@
+import { formatDate } from "../utils/DateFormatter";
+
 export const TaskItem = ({ task, onClick }) => {
     return (
         <div
@@ -6,7 +8,7 @@ export const TaskItem = ({ task, onClick }) => {
         >
             <div>
                 <h3 className="font-semibold">{task.title}</h3>
-                <p className="text-sm text-gray-600">{task.description}</p>
+                <p className="text-sm text-gray-600 mr-2">{task.description}</p>
 
                 <p className="text-xs">
                     <span className="font-semibold">Priority: </span>
@@ -30,7 +32,7 @@ export const TaskItem = ({ task, onClick }) => {
             />
 
                 <span className="absolute bottom-2 right-3 text-xs text-gray-500">
-                    Due: {task.dueDate}
+                    Due: {formatDate(task.dueDate)}
                 </span>
         
         </div>

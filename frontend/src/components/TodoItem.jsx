@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { formatDate } from "../utils/DateFormatter";
 
 export const TodoItem = ({ task }) => {
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ export const TodoItem = ({ task }) => {
 
             {/* 🔥 Bottom-right Due Date */}
             <p className="absolute bottom-2 right-3 text-xs text-orange-500">
-                Due: {task.dueDate}
+                Due: {formatDate(task.dueDate)}
             </p>
         </div>
     );
